@@ -1,0 +1,154 @@
+<head><link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<!------ Include the above in your HEAD tag ---------->
+
+<div style="text-align: center;">
+    <h1>{{message}}</h1>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-body">
+                    <form [formGroup]="registrationForm" class="mx-auto">
+                        <div class="form-group">
+                            <label for="email">Name</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                <input
+                                    type="text"
+                                    id="name"
+                                    name="name"
+                                    class="form-control"
+                                    formControlName="name"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Surname</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                <input
+                                    type="text"
+                                    id="surname"
+                                    name="surname"
+                                    class="form-control"
+                                    formControlName="surname"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">E-mail address</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                    </span>
+                                </div>
+                                <input
+                                    id="email"
+                                    name="email"
+                                    type="text"
+                                    class="form-control"
+                                    formControlName="email"
+                                />
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Password</label>
+                            <div class="input-group">
+                              <input
+                                type="password"
+                                id="password"
+                                name="password"
+                                class="form-control"
+                                formControlName="password"
+                              />
+                              <div class="input-group-append">
+                                <span class="input-group-text">
+                                  <i class="fa fa-eye-slash"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+              
+                          <div class="form-group">
+                            <label for="email">Repeat your password</label>
+                            <div class="input-group">
+                              <input
+                                type="password"
+                                class="form-control"
+                                formControlName="confirmPassword"
+                              />
+                              <div class="input-group-append">
+                                <span class="input-group-text">
+                                  <i class="fa fa-eye-slash"></i>
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <button class="btn-primary btn btn-block" (click)="registerNow()">
+                            Register
+                          </button>
+                      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <form>
+                <fieldset>
+                    <legend class="text-center">Valid information is required to register. <span class="req"><small>
+                                required *</small></span></legend>
+
+                    <div class="form-group">
+                        <label for="Name"><span class="req">* </span> Name: </label>
+                        <input required type="text" [(ngModel)]="user.name" name="name" id="name"
+                            class="form-control phone" maxlength="28" placeholder="Name" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="firstname"><span class="req">* </span> Surname: </label>
+                        <input required class="form-control" type="text" [(ngModel)]="user.surname" name="surname" id="txt" 
+                            placeholder="Surname" />
+                        <div id="errFirst"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="lastname"><span class="req">* </span> E-mail: <small>Your e-mail will also become your username. Remember it!</small> </label>
+                        <input required class="form-control" type="text" [(ngModel)]="user.email" name="email" id="email"
+                            placeholder="E-mail" />
+                        <div id="errLast"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email"><span class="req">* </span> Password: </label>
+                        <input required class="form-control" type="text" [(ngModel)]="user.password" name="password"
+                            id="password" placeholder="Password" />
+                        <div class="status" id="status"></div>
+                    </div>
+                    <div class="form-group">
+                        <input class="btn btn-success" type="submit" name="submit_reg" value="Register" (click)="registerNow()">
+                    </div>
+                </fieldset>
+            </form><!-- ends register form -->
+            <!-- second for to fiter user-->
+        </div><!-- ends col-6 -->
+
+    </div>
+</div>
