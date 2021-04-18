@@ -1,20 +1,5 @@
 {
-    "/register/*":{
-        "target":"http://localhost:9191",
-        "secure":false
-    },
-    
-    "/findUser/*":{
-        "target":"http://localhost:9191",
-        "secure":false
-    },
-
-    "/getAllUsers/*":{
-        "target":"http://localhost:9191",
-        "secure":false
-    },
-
-    "/cancel/*":{
+    "/users/*":{
         "target":"http://localhost:9191",
         "secure":false
     }

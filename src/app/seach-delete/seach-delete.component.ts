@@ -39,7 +39,7 @@ export class SeachDeleteComponent implements OnInit {
   public findUserByEmail(){
     this.getValuesFromForm();
 
-    if(this.email == "") {
+    if(this.email == "" || this.email == null) {
       let resp = this.service.getUsers();
       resp.subscribe((data)=>this.users=data);
       return;

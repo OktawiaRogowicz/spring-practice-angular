@@ -11,21 +11,21 @@ export class UserRegistrationService {
   constructor(private http:HttpClient) { }
 
   public register(user: User): Observable<User>{
-    return this.http.post<User>(`/register`,
+    return this.http.post<User>(`/users/register`,
     user,
     {responseType: 'text' as 'json'});
   }
 
   public getUsers(): Observable<Array<User>>{
-    return this.http.get<Array<User>>(`/getAllUsers`);
+    return this.http.get<Array<User>>(`/users`);
   }
 
   public getUserByEmail(email: string): Observable<User>{
-    return this.http.get<User>(`/findUser/${email}`);
+    return this.http.get<User>(`/users/${email}`);
   }
 
   public deleteUser(id: number){
-    return this.http.delete(`/cancel/${id}`);
+    return this.http.delete(`/users/${id}`);
   }
   
 }
