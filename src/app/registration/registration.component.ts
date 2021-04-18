@@ -52,7 +52,6 @@ export class RegistrationComponent implements OnInit {
     this.getValuesFromForm();
     console.log(this.user);
     let resp = this.service.register(this.user);
-    resp.subscribe();
     resp.subscribe((data)=>this.message=data)
   }
 

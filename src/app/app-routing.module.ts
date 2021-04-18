@@ -5,8 +5,8 @@ import { RegistrationComponent } from './registration/registration.component';
 import { SeachDeleteComponent } from './seach-delete/seach-delete.component';
 
 const routes: Routes = [
-  {path:"register", component:RegistrationComponent},
-  {path:"", redirectTo:"register", pathMatch:"full"},
+  {path:"registration", component:RegistrationComponent},
+  {path:"", redirectTo:"registration", pathMatch:"full"},
   {path:"search", component:SeachDeleteComponent}
 ];
 

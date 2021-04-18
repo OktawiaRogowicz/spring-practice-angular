@@ -1,10 +1,7 @@
 {
     "/register/*":{
         "target":"http://localhost:9191",
-        "secure":false,
-        "pathRewrite": {
-            "^/register": ""
-          }
+        "secure":false
     }
     
 }
