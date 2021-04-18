@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { UserRegistrationService } from '../user-registration.service';
 
 @Component({
   selector: 'app-seach-delete',
@@ -7,9 +9,46 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SeachDeleteComponent implements OnInit {
 
-  constructor() { }
+  users: any;
+  email!: string;
+  searchForm!: FormGroup;
+  
+  constructor(private service:UserRegistrationService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
+    this.setForm();
+    let resp = this.service.getUsers();
+    resp.subscribe((data)=>this.users=data);
   }
+
+  private setForm(): void {
+    this.searchForm = this.formBuilder.group({
+      email: [null, Validators.required]
+    })
+  }
+
+  public getValuesFromForm(){
+    this.email = this.searchForm.get("email")?.value;
+  }
+
+  public deleteUser(id:number){
+    let resp = this.service.deleteUser(id);
+    resp.subscribe((data)=>this.users=data);
+  }
+
+  public findUserByEmail(){
+    this.getValuesFromForm();
+
+    if(this.email == "") {
+      let resp = this.service.getUsers();
+      resp.subscribe((data)=>this.users=data);
+      return;
+    }
+
+    let resp = this.service.getUserByEmail(this.email);
+    resp.subscribe((data)=>this.users=data);
+  }
+
+
 
 }
