@@ -32,39 +32,6 @@ body {
   color: var(--dark-blue);
 }
 
-h3 {
-  font-family: "Hoefler Text";
-  text-transform: lowercase;
-  font-size: 92px; 
-  letter-spacing: 0.05em;
-  color: white;
-}
-
-h4 {
-  margin: 0 0 10px;
-  margin-bottom: 0;
-  font-weight: 100;
-  font-size: 24px;
-  color: white;
-}
-
-h1 {
-  margin: 0 0 10px;
-  font-weight: 100;
-  font-size: 48px;
-}
-
-h2 {
-  margin-bottom: 0;
-  font-size: 36px;
-}
-
-a,
-a:visited {
-  color: var(--red);
-  font-weight: bold;
-}
-
 main {
   width: 100%;
   min-width: 300px;
@@ -76,22 +43,3 @@ main {
   border-radius: 8px;
 }
 
-button {
-  width: 200px;
-  height: 40px;
-  background-color: var(--blue);
-  border: none;
-  outline: none;
-  cursor: pointer;
-  color: var(--dark-blue);
-  font-size: 16px;
-  border-bottom: 4px solid currentColor;
-}
-
-@media (min-width: 500px) {
-  body,
-  main,
-  section {
-    padding: 50px;
-  }
-}

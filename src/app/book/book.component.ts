@@ -15,7 +15,7 @@ import { User } from '../model/user';
 @Component({
   selector: 'app-book',
   templateUrl: './book.component.html',
-  styleUrls: ['./book.component.css']
+  styleUrls: ['./book.component.css', '../base.css']
 })
 export class BookComponent implements OnInit {
 

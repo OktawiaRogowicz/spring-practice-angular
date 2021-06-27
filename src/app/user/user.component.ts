@@ -14,7 +14,7 @@ import { MatPaginator, PageEvent } from '@angular/material/paginator';
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
-  styleUrls: ['./user.component.css']
+  styleUrls: ['./user.component.css', '../base.css']
 })
 export class UserComponent implements OnInit {
 
@@ -49,17 +49,22 @@ export class UserComponent implements OnInit {
 
   getPaginatorData(event: PageEvent): void {
     console.log(event);
-    this.pageSize = event.pageSize;
-    this.highValue = event.pageSize;
-    if(event.pageIndex === this.pageIndex + 1){
+    if( event.pageSize != this.pageSize) {
+      this.pageSize = event.pageSize;
+      this.lowValue = 0;
+      this.highValue = event.pageSize;
+      this.pageIndex = 0;
+    }
+    if(event.pageIndex == this.pageIndex + 1){
        this.lowValue = this.lowValue + this.pageSize;
        this.highValue =  this.highValue + this.pageSize;
+       this.pageIndex = event.pageIndex;
       }
-   else if(event.pageIndex === this.pageIndex - 1){
+   else if(event.pageIndex == this.pageIndex - 1){
       this.lowValue = this.lowValue - this.pageSize;
-      this.highValue =  this.highValue - this.pageSize;
-     }   
+      this.highValue = this.highValue - this.pageSize;
       this.pageIndex = event.pageIndex;
+     }   
       console.log(this.lowValue, this.highValue);
 }
 

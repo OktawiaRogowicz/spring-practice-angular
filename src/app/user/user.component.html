@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans+Condensed" />
 
-<div class="container">
+<body>
+    <main>
 
     <nav class="navbar navbar-expand-md breadcrumb">
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -29,7 +30,7 @@
                 </a>
             </div>
         </div>
-    </nav> 
+    </nav>
 
     <div class="tab-content mt-3" id="myTabContent">
         <div class="tab-pane fade show active" id="users">
@@ -411,11 +412,13 @@
         </div>
     </div>
 
-</div>
+    </div>
 
-<mat-paginator [length]="users.length"
-               (page)="getPaginatorData($event)" [pageSizeOptions]="[3, 5, 10]"
-               showFirstLastButtons="false">
-</mat-paginator>
+    <mat-paginator [length]="users.length" pageSize="pageSize"
+    (page)="getPaginatorData($event)" [pageSizeOptions]="[3, 5, 10]"
+    showFirstLastButtons="false">
+    </mat-paginator>
+    </main>
+</body>
 <footer>
 </footer>
