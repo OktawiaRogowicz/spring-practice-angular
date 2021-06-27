@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,400,700,900");
+
+:root {
+  --blue: #74bcdd;
+  --dark-blue: #2d3e51;
+  --red: #f74442;
+  --yellow: #fbca32;
+  --green: #5be95b;
+  --grey: #ebeced;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  padding: 10px;
+  background-image: url(https://images.unsplash.com/photo-1544185310-0b3cf501672b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2133&q=80),
+    radial-gradient(ellipse at center, #effaff 0%, #c5d0d8 100%);
+  font-family: "Roboto", sans-serif;
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--dark-blue);
+}
+
+h3 {
+  font-family: "Hoefler Text";
+  text-transform: lowercase;
+  font-size: 92px; 
+  letter-spacing: 0.05em;
+  color: white;
+}
+
+h4 {
+  margin: 0 0 10px;
+  margin-bottom: 0;
+  font-weight: 100;
+  font-size: 24px;
+  color: white;
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-weight: 100;
+  font-size: 48px;
+}
+
+h2 {
+  margin-bottom: 0;
+  font-size: 36px;
+}
+
+a,
+a:visited {
+  color: var(--red);
+  font-weight: bold;
+}
+
+main {
+  width: 100%;
+  min-width: 300px;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 30px;
+  background-color: white;
+  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+button {
+  width: 200px;
+  height: 40px;
+  background-color: var(--blue);
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: var(--dark-blue);
+  font-size: 16px;
+  border-bottom: 4px solid currentColor;
+}
+
+@media (min-width: 500px) {
+  body,
+  main,
+  section {
+    padding: 50px;
+  }
+}

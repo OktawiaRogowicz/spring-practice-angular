@@ -1,0 +1,307 @@
+<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans+Condensed" />
+
+<div class="container">
+
+    <nav class="navbar navbar-expand-md breadcrumb">
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="nav nav-pills">
+                <a class="nav-item nav-link active ml-1" (click)="changeTitle('Books')" data-toggle="tab"
+                href="#users">
+                    <i class=fa fa-users></i>
+                    Books
+                </a>
+                <a *ngIf="admin" class="nav-item nav-link ml-1" (click)="onViewUsers()" data-toggle="tab"
+                href="#users">
+                    <i class=fa fa-users></i>
+                    Users
+                </a>
+                <a class="nav-item nav-link move-right mr-3">
+                    Welcome, {{user.name}}!
+                    <i class="fa fa-user"></i>
+                </a>
+                <a class="nav-item nav-link move-right mr-3" (click)="onLogOut()"  data-toggle="tab">
+                    Logout
+                </a>
+            </div>
+        </div>
+    </nav> 
+
+    <div class="tab-content mt-3" id="myTabContent">
+        <div class="tab-pane fade show active" id="books">
+            <div class="mb-3 float-right">
+                <div class="btn-group mr-2">
+                    <form #searchForm="ngForm" class="form-inline my-2 my-lg-0 justify-content-center">
+                        <input name="searchTerm"  class="form-control mr-sm-2" ngModel 
+                        (ngModelChange)="searchBooks(searchForm.value.searchTerm)" type="search" placeholder="Search books...">
+                    </form>
+                    <button type="buttpm" class="btn btn-info" data-toggle="modal" data-target="#addBookModal">
+                        <i class="fa fa-plus"></i>New Book
+                    </button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" (click)="getBooks(true)" class="btn btn-info">
+                        <i *ngIf="refreshing" class="fas fa-sync fa-spin"></i><i *ngIf="!refreshing" class="fas fa-sync"></i>
+                    </button>
+                </div>
+            </div>
+            <table class="table table-hover">
+                <thead class="table-borderless">
+                    <tr class="text-center">
+                        <th>Cover</th>
+                        <th>Book ID</th>
+                        <th>Title</th>
+                        <th>Author</th>
+                        <th>Publisher</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let appBook of books">
+                    <tr class="text-center">
+                        <td>
+                            <img height="40" width="40" src="{{appBook?.profileImageUrl}}" class="rounded-circle img-fluid img-thumbnail" alt=""/>
+                        </td>
+                        <td (click)="onSelectBook(appBook)" >{{appBook?.id}}</td>
+                        <td (click)="onSelectBook(appBook)" >{{appBook?.title}}</td>
+                        <td (click)="onSelectBook(appBook)" >{{appBook?.author}}</td>
+                        <td (click)="onSelectBook(appBook)" >{{appBook?.publishingHouse}}</td>
+                        <td class="">
+                            <div class="btn-group">
+                                <button class="btn btn-outline-info" (click)="onEditBook(appBook)" ><i class="fas fa-edit"></i></button>
+                                <button class="btn btn-outline-danger" (click)="onDeleteBook(appBook.id!)"><i class="fas fa-trash"></i></button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <button [hidden]="true" type="button" id="openBookInfo" data-toggle="modal" data-target="#viewBookModal">
+        </button>
+        <button [hidden]="true" type="button" id="openBookEdit" data-toggle="modal" data-target="#editBookModal">
+        </button>
+
+        <div class="modal fade bd-example-modal-lg" id="viewBookModal" tabindex="-1" role="dialog" aria-labelledby=""
+        aria-hidden="true"> 
+            <div class="modal-dialog" role="document">
+                <div class="mdal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title text-center" id="exampleModalLongTitle">
+                            {{selectedBook?.title}}
+                        </h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-12 col-sm-auto">
+                                            <div class="mx-auto" style="width: 120px;">
+                                            <div class="d-flex justify-content-center align-items-center-rounded">
+                                                <img class="rounded" height="120" width="120" src="{{selectedBook?.profileImageUrl}}" alt="{{selectedBook?.title}}">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col d-flex flex-column flex-sm-row justify-content-betweem">
+                                        <div class="text-center text-sm-left mb-sm-0">
+                                            <h6 class="pt-sm-2 pb-1 mb-0 text-nowrap">{{selectedBook?.title}}</h6>
+                                            <p class="mb-1">{{selectedBook?.author}}</p>
+                                            <p class="mb-1">{{selectedBook?.publishingHouse}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <ul class="list-group list-grup-flush">
+                                <li class="list-group-item"></li>
+                                <li class="list-group-item"><i class="fa fa-id-badge float-right"></i>{{selectedBook?.id}}
+                                </li>
+                                <li class="list-group-item"><i class="fa fa-envelope float-right"></i>{{selectedBook?.translator}}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal draggable fade bd-example-modal-lg" id="addBookModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center">New Book</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form #newBookForm="ngForm" (ngSubmit)="onAddNewBook(newBookForm)">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" name="title" required ngModel class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input type="text" name="author" required ngModel class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="publishingHouse">Publisher</label>
+                                <input type="text" name="publishingHouse" required ngModel class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="translator">Translator</label>
+                                <input type="text" name="translator" required ngModel class="form-control">
+                            </div>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Cover</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" name="profileImage" (change)="onProfileImageChange($any($event.target).files[0].name, $any($event.target).files[0])"
+                                    class="custom-file-input">
+                                    <label class="custom-file-label"><span [hidden]="!fileName">{{ fileName }}</span>
+                                        <span [hidden]="fileName">Choose file</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" style="display: none;" id="new-user-save"></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="new-book-close">Close</button>
+                    <button type="button" (click)="saveNewBook()" [disabled]="newBookForm.invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="modal draggable fade bd-example-modal-lg" id="editBookModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center">Edit {{editBook?.title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form #editBookForm="ngForm">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" name="title" required
+                                [(ngModel)]="editBook.title" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input type="text" name="author" required
+                                [(ngModel)]="editBook.author" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="publishingHouse">Publisher</label>
+                                <input type="text" name="publishingHouse" required
+                                [(ngModel)]="editBook.publishingHouse" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="translator">Translator</label>
+                                <input type="text" name="translator" required
+                                [(ngModel)]="editBook.translator" class="form-control">
+                            </div>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Cover</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" name="profileImage"
+                                    (change)="onProfileImageChange($any($event.target).files[0].name, $any($event.target).files[0])"
+                                    class="custom-file-input">
+                                    <label class="custom-file-label"><span [hidden]="!fileName">{{ fileName }}</span>
+                                        <span [hidden]="fileName">Choose file</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" style="display: none;" id="new-book-save"></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeEditBookModalButton">Close</button>
+                    <button type="button" (click)="onUpdateBook()" [disabled]="editBookForm.invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="modal draggable fade bd-example-modal-lg" id="editBookModal" tabindex="-1" role="dialog"
+    aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center">Edit {{editBook?.title}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <form #editBookForm="ngForm">
+                            <div class="form-group">
+                                <label for="title">Title</label>
+                                <input type="text" name="title" required
+                                [(ngModel)]="editBook.title" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="author">Author</label>
+                                <input type="text" name="author" required
+                                [(ngModel)]="editBook.author" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="publishingHouse">Publisher</label>
+                                <input type="text" name="publishingHouse" required
+                                [(ngModel)]="editBook.publishingHouse" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="translator">Translator</label>
+                                <input type="text" name="translator" required
+                                [(ngModel)]="editBook.translator" class="form-control">
+                            </div>
+                            <div class="input-group mb-2">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text">Cover</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" name="profileImage"
+                                    (change)="onProfileImageChange($any($event.target).files[0].name, $any($event.target).files[0])"
+                                    class="custom-file-input">
+                                    <label class="custom-file-label"><span [hidden]="!fileName">{{ fileName }}</span>
+                                        <span [hidden]="fileName">Choose file</span>
+                                    </label>
+                                </div>
+                            </div>
+                            <button type="submit" style="display: none;" id="new-book-save"></button>
+                        </form>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="closeEditBookModalButton">Close</button>
+                    <button type="button" (click)="onUpdateBook()" [disabled]="editBookForm.invalid" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<footer>
+</footer>

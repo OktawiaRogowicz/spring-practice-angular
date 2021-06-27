@@ -1,0 +1,13 @@
+{
+    "header": {
+        "profile": "Users",
+        "blog": "Books",
+        "language": "Language"
+    },
+    "profile": {
+        "welcome_title": "Welcome to the user page."
+    },
+    "blog": {
+        "welcome_title": "Welcome to the book page."
+    }
+}
