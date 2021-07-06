@@ -1,13 +1,74 @@
 {
     "header": {
-        "profile": "Users",
-        "blog": "Books",
-        "language": "Language"
+        "home": "Home",
+        "browse": "Browse",
+        "language": "Language",
+        "users": "Users",
+        "books": "Books",
+        "settings": "Settings",
+        "logout": "logout",
+        "welcome": "Welcome, "
     },
-    "profile": {
-        "welcome_title": "Welcome to the user page."
+    "front_page": {
+        "name": "Public library",
+        "title": "New York City's",
+        "read_more": "Read more",
+        "back": "Back to top",
+        "start_title": "We are here since 1925",
+        "introduction": "Introduction",
+        "conclusion": "Conclusion"
     },
-    "blog": {
-        "welcome_title": "Welcome to the book page."
+    "buttons": {
+        "edit": "Edit",
+        "new_book": " New book",
+        "new_user": " New user",
+        "loaded": "loaded succesfully",
+        "search_users": "Search users...",
+        "search_books": "Search books..."
+    },
+    "books": {
+        "cover": "Cover",
+        "book_id": "Book ID",
+        "title": "Title",
+        "author": "Author",
+        "publisher": "Publisher",
+        "actions": "Actions"
+    },
+    "users": {
+        "photo": "Photo",
+        "user_id": "User ID",
+        "name": "Name",
+        "surname": "Surname",
+        "email": "E-mail",
+        "status": "Status",
+        "actions": "Actions"
+    },
+    "settings": {
+        "management": "User Password Management",
+        "e-mail": "E-mail adress:",
+        "placeholder": "Enter email (example@gmail.com)",
+        "never": "We'll never share your email with anyone else.",
+        "loading": "Loading...",
+        "reset": "Reset password"
+    },
+    "login": {
+        "email": "Please enter e-mail",
+        "password": "Please enter password",
+        "loading": "Loading...",
+        "login": "Login",
+        "account": "Don't have an accunt?",
+        "sign_up": "Sign up",
+        "em": "E-mail",
+        "pas": "Password"
+    },
+    "register": {
+        "email": "Please enter e-mail",
+        "password": "Please enter password",
+        "name": "Please enter name",
+        "surname": "Please enter surname",
+        "loading": "Loading...",
+        "register": "Register",
+        "already": "Already have an account?",
+        "login": "Log in"
     }
 }
