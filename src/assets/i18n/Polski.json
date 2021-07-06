@@ -1,13 +1,74 @@
 {
     "header": {
-        "profile": "Użytkownicy",
-        "blog": "Książki",
-        "language": "Język"
+        "home": "Strona główna",
+        "browse": "Przeglądaj",
+        "language": "Język",
+        "users": "Użytkownicy",
+        "books": "Książki",
+        "settings": "Ustawienia",
+        "logout": "Wyloguj",
+        "welcome": "Witaj, "
     },
-    "profile": {
-        "welcome_title": "Witaj na liście użytkowników."
+    "front_page": {
+        "name": "Biblioteka publiczna",
+        "title": "Nowojorska",
+        "read_more": "Czytaj więcej",
+        "back": "Wróć do góry strony",
+        "start_title": "Jesteśmy tutaj od 1925",
+        "introduction": "Wprowadzenie",
+        "conclusion": "Konkluzja"
     },
-    "blog": {
-        "welcome_title": "Witaj na liście książek."
+    "buttons": {
+        "edit": "Edytuj",
+        "new_book": " Nowa książka",
+        "new_user": " Nowy użytkownik",
+        "loaded": "załadowanych",
+        "search_users": "Wyszukaj użytkowników...",
+        "search_books": "Wyszukaj książki..."
+    },
+    "books": {
+        "cover": "Okładka",
+        "book_id": "ID książki",
+        "title": "Tytuł",
+        "author": "Autor",
+        "publisher": "Wydawnictwo",
+        "actions": "Akcje"
+    },
+    "users": {
+        "photo": "Zdjęcie",
+        "user_id": "ID użytkownika",
+        "name": "Imię",
+        "surname": "Nazwisko",
+        "email": "E-mail",
+        "status": "Status",
+        "actions": "Akcje"
+    },
+    "settings": {
+        "management": "Zarządzanie Hasłem Uzytkownika",
+        "e-mail": "Adres e-mail:",
+        "placeholder": "Wpisz e-mail (przykład@gmail.com)",
+        "never": "Nigdy nie podzielimy się twoim adresem e-mail z kimkolwiek innym.",
+        "loading": "Ładowanie...",
+        "reset": "Zresetuj hasło"
+    },
+    "login": {
+        "email": "Wpisz e-mail",
+        "password": "Wpisz hasło",
+        "loading": "Ładowanie...",
+        "login": "Login",
+        "account": "Nie masz konta?",
+        "sign_up": "Sign up",
+        "em": "E-mail",
+        "pas": "Hasło"
+    },
+    "register": {
+        "email": "Wpisz e-mail",
+        "password": "Wpisz hasło",
+        "name": "Wpisz imię",
+        "surname": "Wpisz nazwisko",
+        "loading": "Ładowanie...",
+        "register": "Rejestracja",
+        "already": "Posiadasz już konto?",
+        "login": "Zaloguj się"
     }
 }

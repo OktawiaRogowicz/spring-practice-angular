@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'book/management', component: BookComponent },
   { path: 'user/management', component: UserComponent, canActivate: [AuthenticationGuard] },
-  { path: '', redirectTo: '/login', pathMatch: 'full' }
+  { path: '', redirectTo: '/index', pathMatch: 'full' }
 ];
 
 @NgModule({

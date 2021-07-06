@@ -10,6 +10,7 @@ import { AuthenticationService } from '../service/authentication.service';
 import { NotificationService } from '../service/notification.service';
 import { UserService } from '../service/user.service';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user',
@@ -38,7 +39,8 @@ export class UserComponent implements OnInit {
   highValue:number = 3;  
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
-    private userService: UserService, private notificationService: NotificationService) { }
+    private userService: UserService, private notificationService: NotificationService,
+    translate: TranslateService) { }
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserFromLocalCache();

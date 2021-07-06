@@ -1,6 +1,7 @@
 <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans+Condensed" />
 
-<div class="container">
+<body>
+    <main style="justify-content: center; margin-top: 8%;">
 
     <nav class="navbar navbar-expand-md breadcrumb">
         <div class="collapse navbar-collapse" id="navbarCollapse">
@@ -8,19 +9,19 @@
                 <a class="nav-item nav-link active ml-1" (click)="changeTitle('Books')" data-toggle="tab"
                 href="#users">
                     <i class=fa fa-users></i>
-                    Books
+                    {{'header.books' | translate}}
                 </a>
                 <a *ngIf="admin" class="nav-item nav-link ml-1" (click)="onViewUsers()" data-toggle="tab"
                 href="#users">
                     <i class=fa fa-users></i>
-                    Users
+                    {{'header.users' | translate}}
                 </a>
                 <a class="nav-item nav-link move-right mr-3">
-                    Welcome, {{user.name}}!
+                    {{'header.welcome' | translate}}{{user.name}}!
                     <i class="fa fa-user"></i>
                 </a>
                 <a class="nav-item nav-link move-right mr-3" (click)="onLogOut()"  data-toggle="tab">
-                    Logout
+                    {{'header.logout' | translate}}
                 </a>
             </div>
         </div>
@@ -32,7 +33,7 @@
                 <div class="btn-group mr-2">
                     <form #searchForm="ngForm" class="form-inline my-2 my-lg-0 justify-content-center">
                         <input name="searchTerm"  class="form-control mr-sm-2" ngModel 
-                        (ngModelChange)="searchBooks(searchForm.value.searchTerm)" type="search" placeholder="Search books...">
+                        (ngModelChange)="searchBooks(searchForm.value.searchTerm)" type="search" placeholder="{{'buttons.search_books' | translate}}">
                     </form>
                     <button type="buttpm" class="btn btn-info" data-toggle="modal" data-target="#addBookModal">
                         <i class="fa fa-plus"></i>New Book
@@ -47,15 +48,15 @@
             <table class="table table-hover">
                 <thead class="table-borderless">
                     <tr class="text-center">
-                        <th>Cover</th>
-                        <th>Book ID</th>
-                        <th>Title</th>
-                        <th>Author</th>
-                        <th>Publisher</th>
-                        <th>Actions</th>
+                        <th>{{'books.cover' | translate}}</th>
+                        <th>{{'books.book_id' | translate}}</th>
+                        <th>{{'books.title' | translate}}</th>
+                        <th>{{'books.author' | translate}}</th>
+                        <th>{{'books.publisher' | translate}}</th>
+                        <th>{{'books.actions' | translate}}</th>
                     </tr>
                 </thead>
-                <tbody *ngFor="let appBook of books">
+                <tbody *ngFor="let appBook of books | slice: lowValue : highValue">
                     <tr class="text-center">
                         <td>
                             <img height="40" width="40" src="{{appBook?.profileImageUrl}}" class="rounded-circle img-fluid img-thumbnail" alt=""/>
@@ -128,13 +129,14 @@
             </div>
         </div>
     </div>
+    </div>
 
     <div class="modal draggable fade bd-example-modal-lg" id="addBookModal" tabindex="-1" role="dialog"
     aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title text-center">New Book</h5>
+                    <h5 class="modal-title text-center">{{'buttons.new_book' | translate}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -143,15 +145,15 @@
                     <div>
                         <form #newBookForm="ngForm" (ngSubmit)="onAddNewBook(newBookForm)">
                             <div class="form-group">
-                                <label for="title">Title</label>
+                                <label for="title">{{'books.title' | translate}}</label>
                                 <input type="text" name="title" required ngModel class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="author">Author</label>
+                                <label for="author">{{'books.author' | translate}}</label>
                                 <input type="text" name="author" required ngModel class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="publishingHouse">Publisher</label>
+                                <label for="publishingHouse">{{'books.publisher' | translate}}</label>
                                 <input type="text" name="publishingHouse" required ngModel class="form-control">
                             </div>
                             <div class="form-group">
@@ -160,7 +162,7 @@
                             </div>
                             <div class="input-group mb-2">
                                 <div class="input-group-prepend">
-                                    <span class="input-group-text">Cover</span>
+                                    <span class="input-group-text">{{'books.cover' | translate}}</span>
                                 </div>
                                 <div class="custom-file">
                                     <input type="file" name="profileImage" (change)="onProfileImageChange($any($event.target).files[0].name, $any($event.target).files[0])"
@@ -301,7 +303,10 @@
         </div>
     </div>
 
-</div>
+    <mat-paginator [length]="books.length" pageSize="pageSize"
+    (page)="getPaginatorData($event)" [pageSizeOptions]="[3, 5, 10]"
+    showFirstLastButtons="false">
+    </mat-paginator>
 
-<footer>
-</footer>
+    </main>
+</body>

@@ -11,6 +11,8 @@ import { NotificationService } from '../service/notification.service';
 import { BookService } from '../service/book.service';
 import { UserService } from '../service/user.service';
 import { User } from '../model/user';
+import { TranslateModule } from '@ngx-translate/core';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-book',
@@ -32,8 +34,15 @@ export class BookComponent implements OnInit {
   public editBook = new Book();
   private currentBookTitle: string = "";
 
+  length: number = 0;
+  pageIndex:number = 0;
+  pageSize:number = 3;
+  lowValue:number = 0;
+  highValue:number = 3;  
+
   constructor(private router: Router, private authenticationService: AuthenticationService,
-    private bookService: BookService, private userService: UserService, private notificationService: NotificationService) { }
+    private bookService: BookService, private userService: UserService, private notificationService: NotificationService,
+    translate: TranslateModule) { }
 
   ngOnInit(): void {
     this.user = this.authenticationService.getUserFromLocalCache() as any;
@@ -41,6 +50,27 @@ export class BookComponent implements OnInit {
     if(this.user.role == "ROLE_ADMIN")
         this.admin = true;
   }
+
+  getPaginatorData(event: PageEvent): void {
+    console.log(event);
+    if( event.pageSize != this.pageSize) {
+      this.pageSize = event.pageSize;
+      this.lowValue = 0;
+      this.highValue = event.pageSize;
+      this.pageIndex = 0;
+    }
+    if(event.pageIndex == this.pageIndex + 1){
+       this.lowValue = this.lowValue + this.pageSize;
+       this.highValue =  this.highValue + this.pageSize;
+       this.pageIndex = event.pageIndex;
+      }
+   else if(event.pageIndex == this.pageIndex - 1){
+      this.lowValue = this.lowValue - this.pageSize;
+      this.highValue = this.highValue - this.pageSize;
+      this.pageIndex = event.pageIndex;
+     }   
+      console.log(this.lowValue, this.highValue);
+}
 
   public changeTitle(title: string): void {
     this.titleSubject.next(title);

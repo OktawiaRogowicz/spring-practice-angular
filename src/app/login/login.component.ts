@@ -7,6 +7,7 @@ import { Subscription } from 'rxjs';
 import { HttpErrorResponse, HttpResponse } from '@angular/common/http';
 import { NotificationType } from '../enum/notification-type.enum';
 import { HeaderType } from '../enum/header-type.enum';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-login',
@@ -19,7 +20,8 @@ export class LoginComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   constructor(private router: Router, private authenticationService: AuthenticationService,
-              private notificationService: NotificationService) { }
+              private notificationService: NotificationService,
+              translate: TranslateModule) { }
 
   public ngOnInit(): void {
     if(this.authenticationService.isLoggedIn()) {

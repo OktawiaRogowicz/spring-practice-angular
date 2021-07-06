@@ -1,10 +1,11 @@
-<p>register works!</p>
+
 <div class="cointainer" style="margin-top: 100px;">
     <div class="d-flex justify-content-center h-50">
         <div class="user_card">
             <div class="d-flex justify-content-center">
                 <div style="margin-top: 10px; margin-bottom:-90px;">
-                    <h3>Library</h3>
+                    <h4>{{'front_page.title' | translate}}</h4>
+                    <h3>{{'front_page.name' | translate}}</h3>
                 </div>
             </div>
             <div class="d-flex justify-content-center form_container">
@@ -17,7 +18,7 @@
                         #name="ngModel" required>
                     </div>
                     <span class="help-block" style="color: red;"
-                    *ngIf="name.invalid && name.touched">Please enter a name</span>
+                    *ngIf="name.invalid && name.touched">{{'register.name' | translate}}</span>
                     <div class="input-group mb-3">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -26,7 +27,7 @@
                         #surnameInput="ngModel" required >
                     </div>
                     <span class="help-block" style="color: red;"
-                    *ngIf="surnameInput.invalid && surnameInput.touched">Please enter a surname</span>
+                    *ngIf="surnameInput.invalid && surnameInput.touched">{{'register.surname' | translate}}</span>
                     <div class="input-group mb-3">
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
@@ -35,19 +36,19 @@
                         #emailInput="ngModel" required >
                     </div>
                     <span class="help-block" style="color: red;"
-                    *ngIf="emailInput.invalid && emailInput.touched">Please enter an e-mail</span>
+                    *ngIf="emailInput.invalid && emailInput.touched">{{'register.email' | translate}}</span>
                     <div class="d-flex justify-content-center mt-3 login_container">
                         <button type="submit" [disabled]="registerForm.invalid || showLoading" name="button" class="btn login_btn">
                             <i *ngIf="showLoading" class="fas fa-spinner fa-spin"></i>&nbsp;&nbsp;
-                            <span *ngIf="showLoading">Loading...</span>
-                            <span *ngIf="!showLoading">Register</span>
+                            <span *ngIf="showLoading">{{'register.loading' | translate}}</span>
+                            <span *ngIf="!showLoading">{{'register.register' | translate}}</span>
                         </button>
                     </div>
                 </form>
             </div>
             <div class="mt-4">
                 <div class="d-flex justify-content-center links">
-                    Already have an account? <a routerLink="/login" class="ml-2" style="color: #2C3E50;">Sign up</a>
+                    {{'register.already' | translate}} <a routerLink="/login" class="ml-2" style="color: #2C3E50;">{{'register.login' | translate}}</a>
                 </div>
             </div>
         </div>
